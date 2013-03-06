@@ -62,7 +62,8 @@ def generate_stage(index, extended):
     filename = 'ExtendedInstance.t' if extended else 'StandardInstance.t'
     t = string.Template(open('Stage.t').read())
     return t.substitute(
-      dict(Index=str(index),
+      dict(Prev=str(index-1),
+           Index=str(index),
            Next=str(index+1),
            SharedState='_sharedState, ' if extended else ''))
 
