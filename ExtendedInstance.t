@@ -21,6 +21,13 @@ ${Funcs},
             states[0] = state0;            
             try
             {
+                Monitor.Enter(states[${Last}], ref takenLocks[${Last}]);
+                // Execute stage1
+                states[1] = stage1(_sharedState, (T0)state0));
+                if (states[1] == null)
+                {
+                    return;
+                }
 ${Stages}
                 // Lock state${Last}
                 Monitor.Enter(states[${Last}], ref takenLocks[${Last}]);

@@ -55,7 +55,7 @@ def generate_func(n, extended):
     return t.format(extendedState, n, n+1) 
 
 def generate_stages(n, extended):
-    stages = [generate_stage(x, extended) for x in range(n)]
+    stages = [generate_stage(x, extended) for x in range(1, n)]
     return '\n'.join(stages)
 
 def generate_stage(index, extended):
@@ -68,7 +68,7 @@ def generate_stage(index, extended):
            SharedState='_sharedState, ' if extended else ''))
 
 def usage():
-    print """\
+    print("""\
 Usage: python ChainLockerGenerator.py <namespace> <N> [kind]
 
 namespace - The C# namespace of your project
@@ -89,8 +89,7 @@ If you specified Kind=extended only the extended instances will be generated.
 If you specified both then you get both standard and extended. Everything is printed out
 to standard output as a single C# module with the namespace you chosee. The standard instances
 are named ChainLocker<T1,...,Tn>. The extended instances are named ChainLockerEx<T, T1,...,Tn>
-"""
-    print usage
+""")
     sys.exit()
 
 def main(argv):
@@ -106,7 +105,7 @@ def main(argv):
         usage()
 
     s = generate(argv[0], N, kind)
-    print s
+    print(s)
     return s
 
 def test():
@@ -117,5 +116,5 @@ def test():
 if __name__ == '__main__':
     #main(sys.argv[1:])
     test()
-    print 'Done.'
+    print('Done.')
           
